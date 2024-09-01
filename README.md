@@ -62,19 +62,19 @@ the.FEM.SG.DEF	sister.SG.NOM	whose.RC.SG.FEM	friend.SG.FEM.NOM	cook.3SG.PRES
 Sentences that should not parse:
 Adjective in front of the object:
 
-# Lisa	      que	    presenta	        un	              interesante	tema
+Lisa	      que	    presenta	        un	              interesante	tema
 Lisa.FEM.NOM	who.RP	present.3SG.PRES	the.MASC.SG.INDEF	interesting	topic.ACC
 
 Two relative markers (doesn´t make much sense but to show that the implemented or in the grammar works):
-# El            chico	      que	    donde	    habla
+El            chico	      que	    donde	    habla
 the.MASC.SG.DEF	boy.SG.NOM	who.RP	where.RA	talk.3SG.PRES
 
 Wrong determiner:
-# La	          amigos	            quienes	  pintan	        cuadros	        grandes
+La	          amigos	            quienes	  pintan	        cuadros	        grandes
 the.FEM.PL.DEF	friend.MASC.PL.NOM	who.RP.PL	paint.3PL.PRES	picture.PL.ACC	big.PL
 
 Missing argument:
-# Alberto	        quien	    decide
+Alberto	        quien	    decide
 Alberto.MASC.NOM	who.RP.SG	decide.3SG.PRES
 
 
