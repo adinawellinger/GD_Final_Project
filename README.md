@@ -97,7 +97,7 @@ The sentences contain of a main clause and a subordinate, relative clause. There
 I submitted, in addition to this readme file, three files which is the grammar, the test-suite and the common-template file. The grammar includes all the rules, templates and the lexicon of my created grammar that deals with relative clauses in Spanish. The test-suite includes all the test sentences to check whether the created grammar works or not. The common-template mark is needed for the OT-Marks. 
 
 # A link to my GitHub repository
-
+https://github.com/adinawellinger/GD_Final_Project
 
 # Reference
 Rathsam, Kathrin & Schleyer, Jochen. 2016. Spanische Grammatik. Berlin: Cornelsen Verlag.
