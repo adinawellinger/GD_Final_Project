@@ -1,0 +1,70 @@
+#Final Project Grammar Development
+#Test-suite
+#Adina Wellinger
+
+#The boy who talks:
+
+El chico que habla.
+
+#The woman who sings well:
+
+La mujer que canta bien.
+
+#The old car that makes weird noises:
+
+El coche antiguo que hace ruidos raros.
+
+#Lisa who presents a very interesting topic:
+
+Lisa que presenta un tema muy interesante.
+
+#The city where Carlos works in:
+
+La ciudad donde Carlos trabaja.
+
+#The bar where Marta always eats breakfast:
+
+El bar donde Marta desayuna siempre.
+
+#Alberto who decides the date:
+
+Alberto quien decide la fecha.
+
+#Friends who paint big pictures:
+
+Los amigos quienes pintan cuadros grandes.
+
+#The boy whose father lives with the sister:
+
+El chico cuyo padre vive con la hermana.
+
+#Owners whose dogs bark:
+
+Los duenos cuyos perros ladran.
+
+#The sister whose friend cooks:
+
+La hermana cuya amiga cocina.
+
+
+#Sentences that should not parse:
+
+#adjective in front of object
+
+Lisa que presenta un interesante tema.
+
+#two different relative markers
+
+El chico que donde habla.
+
+#false determiner 
+
+La amigos quienes pintan cuadros.
+
+#missing argument
+
+Alberto quien decide.
+
+#wrong punctuation
+
+Alberto quien decide la fecha!

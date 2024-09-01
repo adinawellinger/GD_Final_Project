@@ -1,0 +1,357 @@
+PROJECT SPANISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES  . 
+  LEXENTRIES   (PROJECT SPANISH).
+  RULES   (PROJECT SPANISH).
+  TEMPLATES   (PROJECT SPANISH).
+  MORPHOLOGY	.
+  FEATURES. 
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ-?+ OBL OBL-?+ COMP XCOMP.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC.
+  NONDISTRIBUTIVES    NUM PERS.
+  EPSILON   e.
+  OPTIMALITYORDER     NOGOOD.
+
+----
+PROJECT SPANISH   RULES (1.0)
+
+S --> NP: (^ SUBJ)= !
+	        (! CASE)= nom;
+ 	    RSP: ^ = !;                 "relative sentence phrase"
+      (PERIOD: @(OT-MARK Punct)).  "optional but preferred period at the end of a sentence"
+
+
+  NP --> {(D)                         "optional determiner"
+ 	       N                            "noun"
+         (ADVP)                       "optional adverb phrase"
+         (AP)                         "optional adjective phrase"
+        |PRON                         "or a pronoun"
+        }.
+
+
+  RSP -->   { (RAP)                     "relative adverb or"
+           | (RCP)                      "relative companion or"
+           | (RPP) }                    "relative pronoun"
+           (NP :  (^ OBJ)= !            "Subject of the relative clause, which should be SUBJ and not OBJ"
+	                (! CASE)=nom)
+            V: ^ = !;                   "head of VP "
+           (NP: (^ OBJ)= !              "direct object"
+	             (! CASE)=acc) 
+           (NP: (^ OBJ2) = !)           "second object"
+           (ADVP)                       "optional adverb phrase"
+           (PP: (^ OBL-TO) = !          "optional PP"
+	              (! PFORM) =c con).      "require a value with =c"
+           
+  
+  AP -->  "(ADVP)"                    "optional adverb phrase"
+          A : ! $ (^ ADJUNCT).
+
+  ADVP --> ADV : ! $ (^ ADJUNCT).
+
+  RPP --> RP : ! $ (^ PRONOUN).
+  
+  RAP --> RA : ! $ (^ ADVERB).
+
+  RCP --> RC : ! $ (^ COMPANION).
+
+    
+  PP -->  {P: ^ = !                     "head of the PP"
+          (! PTYPE) =c sem;             "semantic"
+          NP: (^ OBJ) = !               "object"
+              (! CASE) = acc
+          | P: ^ = !                    "or"      "head of PP"
+            (! PTYPE) =c nosem;                   "non-semantic"
+          NP                                      "NP"
+          }.
+
+----
+
+PROJECT SPANISH   TEMPLATES (1.0)
+
+ COUNT-NOUN(P N) = (^ PRED) = 'P'     "template for count nouns"
+	                 (^ NUM) = N
+	                 (^ PERS) = 3.
+
+ NAME(P) = (^ PRED) = 'P'             "template for names"
+           (^ NUM) = sg
+	         (^ PERS) = 3
+	         (^ NTYPE) = name.
+
+ PRON(P Z   N T) = (^ PRED) = 'P'     "template for pronouns"
+	                 (^ NUM) = N
+	                 (^ PERS) = Z
+	                 (^ PRON-TYPE) = T
+	                 (^ NTYPE) = pron.   
+
+ RCOMP(P N G) = (^ PRED) = 'P'        "template for relative companions"
+                (^ NUM) = N
+                (^ GEND) = G
+                (^ COMPANION-TYPE) = relative. 
+
+ PREP(P) =  { (^ PRED) = 'P<(^OBJ)>'  "template for most prepositions"
+	            (^ PTYPE) = sem
+	          | (^ PTYPE) = nosem
+	            (^ PFORM) = P}.
+
+ INTRANS(P) = (^ PRED) = 'P<(^SUBJ)>'.                    "template for intransitive verbs"
+
+ TRANS(P) = (^ PRED)='P<(^ SUBJ) (^ OBJ)>'.               "template for transitive verbs"
+
+ DITRANS(P) = (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL-TO)>'.  "template for dotransitive verbs"
+
+ OPT-TRANS(P) = { (^ PRED) = 'P<(^SUBJ)(^OBJ)>'           "template for verbs that are either transitive"
+	              | (^ PRED) = 'P<(^SUBJ)>' }.              "or intransitive"
+
+ 
+ PRED(P) = (^ PRED) = 'P'.
+
+ TENSE(T) = (^ TENSE) = T.  
+
+ MOOD(M) = (^ MOOD) = M.
+
+ NPOS(N) = (^ NTYPE) = N. 
+
+ PERSON(Z) = (^ PERS) = Z.
+
+ GENDER(G) = (^ GEND) = G.
+
+ VPRES = @(TENSE pres) 
+	       @(MOOD indicative).   
+
+ OT-MARK(_mark) =  _mark $ o::*.    "OT mark, from common templates"
+
+---- 
+
+PROJECT SPANISH   LEXICON (1.0)
+
+"names"
+
+Alberto     N * @(NAME Alberto).
+
+Carlos      N * @(NAME Carlos).
+
+Marta       N * @(NAME Marta).
+
+Lisa        N * @(NAME Lisa).
+
+
+"count nouns"
+
+chico 	  N * @(COUNT-NOUN chico sg)
+                (^ GEND) = masc. 
+
+tema      N * @(COUNT-NOUN tema sg)
+                (^ GEND) = masc.
+
+fecha     N * @(COUNT-NOUN fecha sg)
+                (^ GEND) = fem.
+
+bar 	    N * @(COUNT-NOUN  bar sg)
+                (^ GEND) = masc.
+
+ciudad    N * @(COUNT-NOUN ciudad sg)
+                (^ GEND) = fem.
+
+hermana   N * @(COUNT-NOUN hermana sg)
+                (^ GEND) = fem.
+
+mujer   N * @(COUNT-NOUN mujer sg)
+               (^ GEND) = fem.
+
+padre   N * @(COUNT-NOUN padre sg)
+                (^ GEND) = masc.
+
+coche     N * @(COUNT-NOUN coche sg)
+                (^ GEND) = masc.
+
+amigos    N * @(COUNT-NOUN amigos pl)
+                (^ GEND) = masc.
+
+amiga    N * @(COUNT-NOUN amiga sg)
+                (^ GEND) = fem.
+
+cuadros  N * @(COUNT-NOUN cuadros pl)
+               (^ GEND) = masc.
+
+duenos   N * @(COUNT-NOUN duenos pl)
+                (^ GEND) = masc.
+
+perros   N * @(COUNT-NOUN perros pl)
+                (^ GEND) = masc.
+
+ruidos   N * @(COUNT-NOUN ruidos pl)
+                (^ GEND) = masc.
+
+"verbs"
+
+habla     V * @(OPT-TRANS hablar) 
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = sg.
+
+presenta  V * @(TRANS presentar) 
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = sg.
+
+decide    V * @(TRANS decidir)
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = sg.
+
+desayuna  V * @(OPT-TRANS desayunar) 
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = sg.
+
+vive      V * @(DITRANS vivir) 
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = sg.
+
+trabaja   V * @(OPT-TRANS trabajar)
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = sg.
+
+pintan    V * @(OPT-TRANS pintar)
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = pl.
+
+cocina    V * @(OPT-TRANS cocinar) 
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = sg.
+
+celebran  V * @(OPT-TRANS celebrar) 
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = pl. 
+
+ladran    V * @(TRANS ladran) 
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = pl. 
+
+canta     V * @(OPT-TRANS cantar)
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = sg.
+
+hace    V * @(TRANS hacer)
+       	      @VPRES
+              (^ SUBJ PERS) = 3
+              (^ SUBJ NUM) = sg.
+
+"pronouns"
+
+Yo  PRON * @(PRON Yo 1 sg pers). 
+
+yo  PRON * @(PRON yo 1 sg pers).
+
+me  PRON * @(PRON me 1 sg poss). 
+
+nosotros PRON * @(PRON nosotros 1 pl pers).
+
+
+"relative pronouns"
+
+que     RP *  (^ PRED) = 'que'
+              (^ PRONONTYPE) = relative.
+
+quien   RP *  (^ PRED) = 'quien'
+              (^ NUM) = sg
+              (^ PRONONTYPE) = relative.
+
+quienes RP *  (^ PRED) = 'quienes'
+              (^ NUM) = pl
+              (^ PRONONTYPE) = relative.
+
+
+"relative companion"
+
+cuyo    RC * @(RCOMP cuyo sg masc).
+
+cuyos   RC * @(RCOMP cuyos pl masc).
+
+cuya    RC * @(RCOMP cuya sg fem).
+
+cuyas   RC * @(RCOMP cuyas pl fem). 
+
+
+"relative adverb"
+
+donde RA * (^ PRED) = 'donde'
+           (^ ADVTYPE) = relative.
+
+como  RA * (^ PRED) = 'como'
+           (^ ADVTYPE) = relative.
+
+"prepositions"
+
+con   P * @(PREP con).
+
+
+"determiners"
+
+El  D * (^ DEF) = +
+        (^ NUM) = sg
+        (^ GEND) = masc.
+
+el  D * (^ DEF) = +
+        (^ NUM) = sg
+        (^ GEND) = masc.
+
+La  D * (^ DEF) = +
+        (^ NUM) = sg
+        (^ GEND) = fem. 
+
+la  D * (^ DEF) = +
+        (^ NUM) = sg
+        (^ GEND) = fem.
+
+las D *  (^ DEF) = +
+         (^ NUM) = pl
+         (^ GEND) = fem.
+
+Los D *  (^ DEF) = +
+         (^ NUM) = pl
+         (^ GEND) = masc.
+
+Un  D * (^ DEF) = -
+        (^ NUM) = sg
+        (^ GEND) = masc.
+
+un  D * (^ DEF) = -
+        (^ NUM) = sg
+        (^ GEND) = masc.
+
+
+"adjectives"
+
+interesante   A * (^ PRED) = 'interesante'.
+
+antiguo       A * (^ PRED) = 'antiguo'. 
+
+grandes       A * (^ PRED) = 'grandes'.
+
+raros         A * (^ PRED) = 'raros'. 
+
+
+"adverbs" 
+
+muy     ADV * (^ PRED) = 'muy'.
+
+bien    ADV *  (^ PRED) = 'bien'. 
+
+siempre ADV * (^ PRED) = 'siempre'. 
+
+
+"puncutation"
+
+.	PERIOD * . 
+
+!  EXCL * (^ STMT-TYPE) = exclamation. 
+
+----
